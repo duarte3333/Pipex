@@ -13,18 +13,20 @@
 #include "../pipex.h"
 
 //Esta funcao cria um nó
-t_list	*ft_lstnew(char *file, char *cmd, int fd, char *path)
+t_list	*ft_lstnew(char *file, char *cmd, char *path)
 {
 	t_list	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+
+	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
 	new->file = file;
-	new->cmd = cmd;
-	new->fd = fd;
+	new->av = ft_split(cmd, ' ');
+	new->cmd = new->av[0];
+	if (pipe(new->fd) == -1)
+		printf("Error\n");
 	new->path = path;
-	new->next = NULL;
 	return (new);
 }
 
@@ -47,7 +49,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (lst)
 	{
 		if (*lst)
+		{
+			new->prev = ft_lstlast(*lst);
 			ft_lstlast(*lst)->next = new;
+		}
 		else
 			*lst = new;
 	}

@@ -1,0 +1,4 @@
+NAME = pipex
+CC = cc
+CFLAGS = -O3 -Wall -Wextra #-fsanitize=address -g
+

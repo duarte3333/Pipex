@@ -7,6 +7,7 @@ void	ft_free_list(t_list **lst)
 	while (*lst)
 	{
 		temp = (*lst)->next;
+		free((*lst)->av);
 		free((*lst)->path);
 		free(*lst);
 		*lst = temp;
@@ -30,6 +31,7 @@ void	ft_print_list(t_list *input)
 	{
 		printf("cmd: %s and file: %s\n", input->cmd, input->file);
 		printf("path: %s\n", input->path);
+		printf("av: %s\n", input->av[0]);
 		input = input->next;
 	}
 }
@@ -47,15 +49,15 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 	fd_out = open("out.txt", O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd_out == -1)
 		perror("");	
-	input = ft_lstnew(av[1], av[2], fd_in, ft_check_path(av[2], paths));
+	input = ft_lstnew(av[1], av[2], ft_check_path(av[2], paths));
 	i = 2;
 	while (av[++i] && i < (ac - 1))
 	{
 		if (i == (ac - 2))
-			ft_lstadd_back(&input, ft_lstnew(av[i + 1], av[i], fd_out, \
+			ft_lstadd_back(&input, ft_lstnew(av[i + 1], av[i], \
 				ft_check_path(av[i], paths)));
 		else
-			ft_lstadd_back(&input, ft_lstnew(NULL, av[i], -1, \
+			ft_lstadd_back(&input, ft_lstnew(NULL, av[i], \
 				ft_check_path(av[i], paths)));
 	}
 	close(fd_in);
@@ -65,12 +67,29 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 
 int main(int ac, char **av, char **env)
 {
+	int 	pid;
 	char **paths;
 	t_list *input;
 
 	paths = ft_get_path(env);
 	input = ft_set_input(av, ac, paths);
 	ft_print_list(input);
+	while (input)
+	{
+		pid = fork();
+		if (!input->prev)
+			dup2(open(av[1], O_RDWR), 0); //fd[0] passa a ser stdin
+		else
+			dup2(input->prev->fd[0], 0); //fd[0] passa a ser stdin
+		if (!input->next)
+			dup2(open("out.txt", O_RDWR | O_TRUNC | O_CREAT, 0644), 1); //fd[0] passa a ser stdin
+		else
+			dup2(input->fd[1], 1); //fd[1] passa a ser stdout
+		if (pid == 0)
+			execve(input->path, input->av, env);
+		input = input->next;
+	}
+	printf("oi\n");
 	ft_free_all(input, paths);
 }
 
