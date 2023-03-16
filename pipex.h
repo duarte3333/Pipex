@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/03/16 17:46:23 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -6,15 +18,15 @@
 # include <string.h>
 # include <stdlib.h>
 # include <limits.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <fcntl.h>
+# include <unistd.h>
+# include <sys/wait.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
-	char 			*cmd;
-	int 			fd[2];
+	char			*cmd;
+	int				fd[2];
 	char			*path;
 	char			**av;
 	struct s_list	*next;
@@ -38,8 +50,8 @@ int		ft_get_index(char *cmd, t_list *lst);
 int		ft_lstsize(t_list *lst);
 
 //Path
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-char **ft_get_path(char **env);
-char *ft_check_path(char *cmd, char **paths);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**ft_get_path(char **env);
+char	*ft_check_path(char *cmd, char **paths);
 
 #endif

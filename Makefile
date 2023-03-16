@@ -1,6 +1,6 @@
 NAME = pipex
 CC = cc
-CFLAGS = -O3 -Wall -Wextra -fsanitize=address -g
+CFLAGS = -O3 -Wall -Wextra  -g #-fsanitize=address
 
 # ANSI color codes
 RED=\033[0;31m

@@ -20,7 +20,7 @@ void	ft_free_list(t_list **lst)
 
 void	ft_free_all(t_list *input, char **paths)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (paths[++i])
@@ -31,22 +31,21 @@ void	ft_free_all(t_list *input, char **paths)
 
 void	ft_print_list(t_list *input)
 {
-	while (input)	
+	while (input)
 	{
 		printf("cmd: %s\n", input->cmd);
 		printf("path: %s\n", input->path);
 		printf("av[0]: %s\n", input->av[0]);
 		printf("av[1]: %s\n", input->av[1]);
 		printf("fd in[1] %i and fd out[0] %i\n", input->fd[1], input->fd[0]);
-		// printf("p1: %p p2: %p\n", input, input->next->prev);
 		input = input->next;
 	}
 }
 
 t_list	*ft_set_input(char **av, int ac, char **paths)
 {
-	int 	i;
-	t_list  *input;
+	int		i;
+	t_list	*input;
 
 	input = ft_lstnew(av[2], ft_check_path(av[2], paths));
 	i = 2;
@@ -57,19 +56,25 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 
 int main(int ac, char **av, char **env)
 {
-	int 	pid;
-	char **paths;
-	t_list *input;
-	t_list *temp;
-	int 	fd_in;
-	int 	fd_out;
+	int		pid;
+	char	**paths;
+	t_list	*input;
+	t_list	*temp;
+	int		fd_in;
+	int		fd_out;
+	int		flag;
 
 	fd_in = open(av[1], O_RDWR);
+	flag = 0;
 	if (fd_in == -1)
+	{
+		fd_in = open(".temp", O_RDWR | O_CREAT, 0644);
+		flag = 6;
 		perror(av[1]);
-	fd_out = open(av[ac - 1], O_WRONLY  | O_TRUNC | O_CREAT, 0644);
+	}
+	fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (fd_out == -1)
-		perror("");	
+		perror("");
 	printf("fd_in %i and fd_out %i\n", fd_in, fd_out);
 	paths = ft_get_path(env);
 	input = ft_set_input(av, ac, paths);
@@ -77,31 +82,47 @@ int main(int ac, char **av, char **env)
 	ft_print_list(input);
 	while (input)
 	{
+		if (!input->prev)
+			dup2(fd_in, 0);
+		else
+		{
+			dup2(input->prev->fd[0], 0);
+			close(input->prev->fd[0]);
+		}
 		pid = fork();
 		if (pid == 0)
 		{
-			if (!input->prev)
-				dup2(fd_in, 0);
-			else
-			{
-				dup2(input->prev->fd[0], 0);
-				close(input->prev->fd[0]);
-			}
+			close(input->fd[0]);
 			if (!input->next)
+			{
 				dup2(fd_out, 1);
+				close(fd_out);
+			}
 			else
 			{
-				//printf("eita\n");
 				dup2(input->fd[1], 1);
 				close(input->fd[1]);
 			}
 			execve(input->path, input->av, env);
-		}
+		} 
+		if (!input->prev)
+			close(0);
+		close(input->fd[0]);
+		close(input->fd[1]);
+		input = input->next;
+	}
+	input = temp;
+	while (input)
+	{
+		wait(NULL);
+		printf("oi\n");
 		input = input->next;
 	}
 	input = temp;
 	close(fd_in);
 	close(fd_out);
+	if (flag)
+		unlink(".temp");
 	ft_free_all(input, paths);
 }
 
