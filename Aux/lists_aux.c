@@ -13,7 +13,7 @@
 #include "../pipex.h"
 
 //Esta funcao cria um nó
-t_list	*ft_lstnew(char *file, char *cmd, char *path)
+t_list	*ft_lstnew(char *cmd, char *path)
 {
 	t_list	*new;
 
@@ -21,7 +21,6 @@ t_list	*ft_lstnew(char *file, char *cmd, char *path)
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->file = file;
 	new->av = ft_split(cmd, ' ');
 	new->cmd = new->av[0];
 	if (pipe(new->fd) == -1)

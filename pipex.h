@@ -13,7 +13,6 @@
 
 typedef struct s_list
 {
-	char 			*file;
 	char 			*cmd;
 	int 			fd[2];
 	char			*path;
@@ -31,7 +30,7 @@ char	*ft_strjoinn(char *s1, char const *s2);
 void	*ft_calloc(size_t nelem, size_t elsize);
 
 //Lists auxiliary functions
-t_list	*ft_lstnew(char *file, char *cmd, char *path);
+t_list	*ft_lstnew(char *cmd, char *path);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_get_cmd(int index, t_list *lst);
