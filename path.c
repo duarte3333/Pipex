@@ -1,4 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/17 09:54:15 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/03/17 12:04:12 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
+
+void	ft_empty_command(char **first_command)
+{
+	int	i;
+
+	i = 0;
+	if (!first_command || !first_command[i])
+	{
+		free(first_command);
+		perror("command not found");
+		exit(0);
+	}
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -30,8 +55,11 @@ char	**ft_get_path(char **env)
 	}
 	perror("PATH not found");
 	i = -1;
-	while (paths[++i])
-		free(paths[i]);
+	if (paths)
+	{
+		while (paths[++i])
+			free(paths[i]);
+	}
 	free(paths);
 	exit(0);
 }
@@ -42,29 +70,31 @@ char	*ft_check_path(char *cmd, char **paths)
 	char	**first_command;
 	char	*path_command;
 	char	*temp;
+	int		size;
 
+	size = 0;
 	first_command = ft_split(cmd, ' ');
-
-	i = 0;
-	while (first_command[++i])
-		free(first_command[i]);
-	i = 0;
-	while (paths[i])
+	ft_empty_command(first_command);
+	ft_free_rest(first_command);
+	i = -1;
+	while (paths[++i])
+		size++;
+	i = -1;
+	while (paths[++i])
 	{
 		temp = ft_strjoinn(paths[i], "/");
 		path_command = ft_strjoinn(temp, first_command[0]);
 		if (!access(path_command, X_OK))
 		{
 			free(temp);
-			free(first_command[0]);
-			free(first_command);
+			ft_free_first_command(first_command);
 			return (path_command);
 		}
+		if ((access(path_command, F_OK) == -1) && i == (size - 1))
+			perror(first_command[0]);
 		free(path_command);
 		free(temp);
-		i++;
 	}
-	free(first_command[0]);
-	free(first_command);
+	ft_free_first_command(first_command);
 	return (NULL);
 }

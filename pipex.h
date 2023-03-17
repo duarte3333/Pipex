@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/16 17:46:23 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:48:28 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
+typedef struct s_info
+{
+	int		pid;
+	int		fd_in;
+	int		fd_out;
+	int		flag;
+	char	**paths;
+}				t_info;
+
 //Checker and parsing
 int		ft_atoi(const char *nptr);
 int		ft_isdigit(int i);
@@ -45,13 +54,16 @@ void	*ft_calloc(size_t nelem, size_t elsize);
 t_list	*ft_lstnew(char *cmd, char *path);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-char	*ft_get_cmd(int index, t_list *lst);
-int		ft_get_index(char *cmd, t_list *lst);
-int		ft_lstsize(t_list *lst);
 
 //Path
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_get_path(char **env);
 char	*ft_check_path(char *cmd, char **paths);
+
+//Free stuff
+void	ft_free_list(t_list **lst);
+void	ft_free_all(t_list *input, char **paths);
+void	ft_free_rest(char **first_command);
+void	ft_free_first_command(char **first_command);
 
 #endif

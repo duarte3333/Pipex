@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/01 13:35:28 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/17 09:54:09 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 t_list	*ft_lstnew(char *cmd, char *path)
 {
 	t_list	*new;
-
 
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
@@ -55,19 +54,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		else
 			*lst = new;
 	}
-}
-
-//Esta funcao retorna o content de um dado 
-//indice de um elemento da linked list
-char	*ft_get_cmd(int index, t_list *lst)
-{
-	int	i;
-
-	i = 0;
-	while (i < index)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (lst->cmd);
 }

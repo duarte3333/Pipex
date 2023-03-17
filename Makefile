@@ -1,6 +1,6 @@
 NAME = pipex
 CC = cc
-CFLAGS = -O3 -Wall -Wextra  -g #-fsanitize=address
+CFLAGS = -O3 -Wall -Wextra  -g -fsanitize=address
 
 # ANSI color codes
 RED=\033[0;31m
@@ -21,7 +21,7 @@ SRCS = main.c \
 	   Aux/ft_strlen.c \
 	   Aux/ft_strjoin.c \
 	   Aux/lists_aux.c \
-	   Aux/lists_aux2.c \
+	   free.c \
 	   path.c
 
 OBJS	= ${SRCS:.c=.o}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/17 10:05:58 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/03/17 10:06:08 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../pipex.h"
 
 //Esta funcao aloca memoria para n bytes com o malloc
@@ -37,7 +49,5 @@ char	*ft_strjoinn(char *s1, char const *s2)
 		concat[i] = s1[i];
 	while (s2[++j])
 		concat[i + j] = s2[j];
-	// if (s1)
-	// 	free(s1);
 	return (concat);
 }
