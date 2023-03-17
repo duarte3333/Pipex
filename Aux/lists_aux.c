@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 09:54:09 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:17:25 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*ft_lstnew(char *cmd, char *path)
 	new->av = ft_split(cmd, ' ');
 	new->cmd = new->av[0];
 	if (pipe(new->fd) == -1)
-		printf("Error\n");
+		perror("");
 	new->path = path;
 	return (new);
 }

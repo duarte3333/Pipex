@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 10:48:28 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:26:54 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ typedef struct s_info
 	int		fd_in;
 	int		fd_out;
 	int		flag;
+	t_list	*first;
 	char	**paths;
 }				t_info;
+
+
 
 //Checker and parsing
 int		ft_atoi(const char *nptr);

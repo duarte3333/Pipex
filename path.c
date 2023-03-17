@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:54:15 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 12:04:12 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:16:44 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ char	*ft_check_path(char *cmd, char **paths)
 			ft_free_first_command(first_command);
 			return (path_command);
 		}
-		if ((access(path_command, F_OK) == -1) && i == (size - 1))
-			perror(first_command[0]);
 		free(path_command);
 		free(temp);
 	}
