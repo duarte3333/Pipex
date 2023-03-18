@@ -6,24 +6,11 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:54:15 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 13:05:38 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:46:32 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_empty_command(char **first_command)
-{
-	int	i;
-
-	i = 0;
-	if (!first_command || !first_command[i])
-	{
-		free(first_command);
-		perror("command not found");
-		exit(0);
-	}
-}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -64,6 +51,12 @@ char	**ft_get_path(char **env)
 	exit(0);
 }
 
+char	*ft_empty_str(char **str)
+{
+	ft_free_first_command(str);
+	return (NULL);
+}
+
 char	*ft_check_path(char *cmd, char **paths)
 {
 	int		i;
@@ -72,8 +65,9 @@ char	*ft_check_path(char *cmd, char **paths)
 	char	*temp;
 
 	first_command = ft_split(cmd, ' ');
-	ft_empty_command(first_command);
 	ft_free_rest(first_command);
+	if (!first_command[0] || !first_command)
+		return (ft_empty_str(first_command));
 	i = -1;
 	while (paths[++i])
 	{

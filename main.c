@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 13:59:11 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:04:56 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 }
 
 void	free_and_close_transit(t_list *input)
-{
+{	
 	input = data()->first;
-	if (data()->flag)
-		unlink(".temp");
 	close(data()->fd_in);
 	close(data()->fd_out);
 	ft_free_all(data()->first, data()->paths);
@@ -43,17 +41,23 @@ void	free_and_close_transit(t_list *input)
 
 void	ft_get_in_out_fd(int ac, char **av)
 {
+	int		fd[2];
+
 	(data())->fd_in = open(av[1], O_RDWR);
 	data()->flag = 0;
 	if (data()->fd_in == -1)
 	{
-		(data())->fd_in = open(".temp", O_RDWR | O_CREAT, 0644);
-		data()->flag = 6;
 		perror(av[1]);
+		pipe(fd);
+		(data())->fd_in = fd[0];
+		close(fd[1]);
 	}
 	(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (data()->fd_out == -1)
+	{
 		perror("");
+		exit(av[ac - 1]);
+	}
 	data()->i = 1;
 }
 
@@ -71,10 +75,7 @@ int	main(int ac, char **av, char **env)
 		data()->pid = fork();
 		if (data()->pid == 0)
 			ft_child(input, av[data()->i], env);
-		close(0);
-		close(input->fd[1]);
-		if (!input->next)
-			close(input->fd[0]);
+		ft_pos_father(input);
 		input = input->next;
 	}
 	input = data()->first;
