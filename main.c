@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 13:06:59 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:59:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_get_in_out_fd(int ac, char **av)
 	(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (data()->fd_out == -1)
 		perror("");
+	data()->i = 1;
 }
 
 int	main(int ac, char **av, char **env)
@@ -69,7 +70,7 @@ int	main(int ac, char **av, char **env)
 		ft_pre_father(input);
 		data()->pid = fork();
 		if (data()->pid == 0)
-			ft_child(input, data()->fd_out, env);
+			ft_child(input, av[data()->i], env);
 		close(0);
 		close(input->fd[1]);
 		if (!input->next)

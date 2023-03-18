@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 13:06:16 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:48:37 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_list
 typedef struct s_info
 {
 	int		pid;
+	int		i;
 	int		fd_in;
 	int		fd_out;
 	int		flag;
@@ -63,7 +64,7 @@ char	*ft_check_path(char *cmd, char **paths);
 
 //Parents
 t_info	*data(void);
-void	ft_child(t_list *input, int fd_out, char **env);
+void	ft_child(t_list *input, char *av_curr, char **env);
 void	ft_pre_father(t_list *input);
 
 //Free stuff
