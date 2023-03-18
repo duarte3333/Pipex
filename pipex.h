@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 18:24:04 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:18:32 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # include <sys/wait.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+# ifndef PIPEX_BONUS
+#  define PIPEX_BONUS 0
+# endif
+
 
 typedef struct s_list
 {

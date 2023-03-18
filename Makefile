@@ -50,6 +50,10 @@ all: fingers $(NAME) done
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
+# $(BONUS): clean $(OBJS)
+# 	@$(CC) $(CFLAGS) -D PIPEX_BONUS=1 $(OBJS) -o $(BONUS)
+
+
 fingers:
 	@echo "$(YELLOW)Fingers crossed for no errors...$(RESET)"
 	@echo "$(YELLOW)Code getting the VIP treatment in the compiler...$(RESET)"
@@ -70,4 +74,4 @@ fclean_all: clean fclean_checker
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

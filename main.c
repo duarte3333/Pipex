@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 19:14:11 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:47:09 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_get_in_out_fd(int ac, char **av)
 	if (data()->fd_out == -1)
 	{
 		perror("");
-		exit(av[ac - 1]);
+		exit(0);
 	}
 	data()->i = 1;
 }
@@ -65,7 +65,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_list	*input;
 
-	if (ac == 5)
+	if (ac == 5 || PIPEX_BONUS)
 	{
 		ft_get_in_out_fd(ac, av);
 		data()->paths = ft_get_path(env);
