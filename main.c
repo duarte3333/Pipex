@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 19:04:56 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:14:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,27 @@ int	main(int ac, char **av, char **env)
 {
 	t_list	*input;
 
-	ft_get_in_out_fd(ac, av);
-	data()->paths = ft_get_path(env);
-	input = ft_set_input(av, ac, data()->paths);
-	data()->first = input;
-	while (input)
+	if (ac == 5)
 	{
-		ft_pre_father(input);
-		data()->pid = fork();
-		if (data()->pid == 0)
-			ft_child(input, av[data()->i], env);
-		ft_pos_father(input);
-		input = input->next;
+		ft_get_in_out_fd(ac, av);
+		data()->paths = ft_get_path(env);
+		input = ft_set_input(av, ac, data()->paths);
+		data()->first = input;
+		while (input)
+		{
+			ft_pre_father(input);
+			data()->pid = fork();
+			if (data()->pid == 0)
+				ft_child(input, av[data()->i], env);
+			ft_pos_father(input);
+			input = input->next;
+		}
+		input = data()->first;
+		while (input)
+		{
+			waitpid(-1, NULL, 0);
+			input = input->next;
+		}
+		free_and_close_transit(input);
 	}
-	input = data()->first;
-	while (input)
-	{
-		waitpid(-1, NULL, 0);
-		input = input->next;
-	}
-	free_and_close_transit(input);
 }
