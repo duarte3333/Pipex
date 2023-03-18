@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 18:26:54 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:06:16 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ typedef struct s_info
 	char	**paths;
 }				t_info;
 
-
-
 //Checker and parsing
 int		ft_atoi(const char *nptr);
 int		ft_isdigit(int i);
@@ -62,6 +60,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_get_path(char **env);
 char	*ft_check_path(char *cmd, char **paths);
+
+//Parents
+t_info	*data(void);
+void	ft_child(t_list *input, int fd_out, char **env);
+void	ft_pre_father(t_list *input);
 
 //Free stuff
 void	ft_free_list(t_list **lst);

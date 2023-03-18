@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:54:15 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 18:16:44 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:05:38 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,10 @@ char	*ft_check_path(char *cmd, char **paths)
 	char	**first_command;
 	char	*path_command;
 	char	*temp;
-	int		size;
 
-	size = 0;
 	first_command = ft_split(cmd, ' ');
 	ft_empty_command(first_command);
 	ft_free_rest(first_command);
-	i = -1;
-	while (paths[++i])
-		size++;
 	i = -1;
 	while (paths[++i])
 	{

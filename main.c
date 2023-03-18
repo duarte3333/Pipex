@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 18:51:14 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:06:59 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,80 +31,46 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 	return (input);
 }
 
-void	ft_child(t_list *input, int fd_out, char **env)
+void	free_and_close_transit(t_list *input)
 {
-	if (!input->next)
-	{
-		dup2(fd_out, 1);
-		close(fd_out);
-	}
-	else
-	{
-		dup2(input->fd[1], 1);
-	}
-	close(input->fd[0]);
-	close(input->fd[1]);
-	if (execve(input->path, input->av, env) == -1)
-		perror("Command not found");
+	input = data()->first;
+	if (data()->flag)
+		unlink(".temp");
 	close(data()->fd_in);
-	close(0);
-	close(1);
-	
-	//fechar pipes
+	close(data()->fd_out);
 	ft_free_all(data()->first, data()->paths);
-	exit(1);
 }
 
-// void	free_and_close(t_list *input)
-// {
-// 	t_list	*temp;
-
-// 	input = temp;
-// 	while (input)
-// 	{
-// 		wait(NULL);
-// 		input = input->next;
-// 	}
-// 	input = temp;
-// 	close(data()->fd_in);
-// 	close(data()->fd_out);
-// 	if (data()->flag)
-// 		unlink(".temp");
-// 	ft_free_all(input, data()->paths);
-// }
-
-int main(int ac, char **av, char **env)
+void	ft_get_in_out_fd(int ac, char **av)
 {
-	t_list	*input;
-
 	(data())->fd_in = open(av[1], O_RDWR);
 	data()->flag = 0;
 	if (data()->fd_in == -1)
 	{
-		data()->fd_in = open(".temp", O_RDWR | O_CREAT, 0644);
+		(data())->fd_in = open(".temp", O_RDWR | O_CREAT, 0644);
 		data()->flag = 6;
 		perror(av[1]);
 	}
-	data()->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (data()->fd_out == -1)
 		perror("");
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_list	*input;
+
+	ft_get_in_out_fd(ac, av);
 	data()->paths = ft_get_path(env);
 	input = ft_set_input(av, ac, data()->paths);
 	data()->first = input;
 	while (input)
 	{
-		if (!input->prev)
-			dup2(data()->fd_in, 0);
-		else
-		{
-			dup2(input->prev->fd[0], 0);
-			close(input->prev->fd[0]);
-		}
+		ft_pre_father(input);
 		data()->pid = fork();
 		if (data()->pid == 0)
 			ft_child(input, data()->fd_out, env);
-		// if (!input->prev)
-			close(0);
+		close(0);
 		close(input->fd[1]);
 		if (!input->next)
 			close(input->fd[0]);
@@ -116,23 +82,5 @@ int main(int ac, char **av, char **env)
 		waitpid(-1, NULL, 0);
 		input = input->next;
 	}
-	input = data()->first;
-	if (data()->flag)
-		unlink(".temp");
-	close(data()->fd_in);
-	close(data()->fd_out);
-	ft_free_all(data()->first, data()->paths);
+	free_and_close_transit(input);
 }
-
-// void	ft_print_list(t_list *input)
-// {
-// 	while (input)
-// 	{
-// 		printf("cmd: %s\n", input->cmd);
-// 		printf("path: %s\n", input->path);
-// 		printf("av[0]: %s\n", input->av[0]);
-// 		printf("av[1]: %s\n", input->av[1]);
-// 		printf("fd in[1] %i and fd out[0] %i\n", input->fd[1], input->fd[0]);
-// 		input = input->next;
-// 	}
-// }

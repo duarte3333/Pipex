@@ -2,6 +2,9 @@ NAME = pipex
 CC = cc
 CFLAGS = -O3 -Wall -Wextra  -g #-fsanitize=address
 
+#valgrind --leak-check=full --show-leak-kinds=all 
+#--track-fds=yes ./pipex /dev/random  head out.txt
+
 # ANSI color codes
 RED=\033[0;31m
 GREEN=\033[0;32m
@@ -21,6 +24,7 @@ SRCS = main.c \
 	   Aux/ft_strlen.c \
 	   Aux/ft_strjoin.c \
 	   Aux/lists_aux.c \
+	   parents.c \
 	   free.c \
 	   path.c
 
