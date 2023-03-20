@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"pipex.h": "c"
-	}
+	},
+	"C_Cpp.dimInactiveRegions": false
 }

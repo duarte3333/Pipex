@@ -23,11 +23,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# ifndef PIPEX_BONUS
-#  define PIPEX_BONUS 0
-# endif
-
-
 typedef struct s_list
 {
 	char			*cmd;

@@ -65,7 +65,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_list	*input;
 
-	if (ac == 5)
+	if (ac >= 5)
 	{
 		ft_get_in_out_fd(ac, av);
 		data()->paths = ft_get_path(env);

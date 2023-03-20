@@ -28,31 +28,30 @@ SRCS = main.c \
 	   free.c \
 	   path.c
 
+BONUS_SRCS = bonus.c \
+	   Aux/ft_atoi.c \
+	   Aux/ft_split.c \
+	   Aux/ft_strlen.c \
+	   Aux/ft_strjoin.c \
+	   Aux/lists_aux.c \
+	   parents.c \
+	   free.c \
+	   path.c
+
 OBJS	= ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
-
-
-#-c: This is a flag that tells the compiler to compile 
-#	 the source file into an object file, without linking 
-#	 it to other object files or libraries.
-#$@: Is the name of the output file that this rule will create. 
-#	 In this case, it's the name of the object file being created.
-#$<: Contains the name of the first dependency of the rule, which is the name of the source file being compiled. 
 %.o: %.c pipex.h
 	@$(CC) -c $(CFLAGS) -o $@ $< 
 	@echo "$(YELLOW)[COMPILED]	"$<"$(RESET)"
 
 all: fingers $(NAME) done
 
-#@echo "$(GREEN)Another day, another successful compile.$(RESET)"
-#@echo "$(GREEN)Ready to use "$@"!$(RESET)"
-#@echo "$(GREEN)The "$@" was successfully graduated from compile school!$(RESET)"
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-# $(BONUS): clean $(OBJS)
-# 	@$(CC) $(CFLAGS) -D PIPEX_BONUS=1 $(OBJS) -o $(BONUS)
-
+bonus: ${BONUS_OBJS}
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(NAME)
 
 fingers:
 	@echo "$(YELLOW)Fingers crossed for no errors...$(RESET)"
@@ -63,7 +62,7 @@ done:
 
 
 clean:
-	@rm -f ${OBJS}
+	@rm -f ${OBJS}  $(BONUS_OBJS)
 	@echo "\033[31mTemporary object files deleted\033[0m"
 
 fclean: clean
@@ -74,4 +73,20 @@ fclean_all: clean fclean_checker
 
 re: fclean all
 
+norm:
+	norminette -R CheckForbiddenSourceHeader -R CheckDefine *.c
+	norminette -R CheckForbiddenSourceHeader -R CheckDefine Aux/*.c
+	norminette -R CheckDefine pipex.h
+
 .PHONY: all clean fclean re bonus
+
+#$@: Is the name of the output file that this rule will create. 
+#	 In this case, it's the name of the object file being created.
+#$<: Contains the name of the first dependency of the rule, which is the name of the source file being compiled. 
+#-c: This is a flag that tells the compiler to compile 
+#	 the source file into an object file, without linking 
+#	 it to other object files or libraries.
+
+#@echo "$(GREEN)Another day, another successful compile.$(RESET)"
+#@echo "$(GREEN)Ready to use "$@"!$(RESET)"
+#@echo "$(GREEN)The "$@" was successfully graduated from compile school!$(RESET)"
