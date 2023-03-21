@@ -29,6 +29,9 @@ SRCS = main.c \
 	   path.c
 
 BONUS_SRCS = bonus.c \
+	   Get_Next_Line/get_next_line.c \
+	   Get_Next_Line/get_next_line_utils.c \
+	   here_doc.c \
 	   Aux/ft_atoi.c \
 	   Aux/ft_split.c \
 	   Aux/ft_strlen.c \

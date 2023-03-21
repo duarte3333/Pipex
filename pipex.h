@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "Get_Next_Line/get_next_line.h"
 
 typedef struct s_list
 {
@@ -74,5 +75,8 @@ void	ft_free_all(t_list *input, char **paths);
 void	ft_free_rest(char **first_command);
 void	ft_free_first_command(char **first_command);
 void	free_and_close_transit(t_list *input);
+
+//Here_doc
+int	ft_main_here_doc(char **av);
 
 #endif

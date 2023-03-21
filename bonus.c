@@ -24,8 +24,8 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 	int		i;
 	t_list	*input;
 
-	input = ft_lstnew(av[2], ft_check_path(av[2], paths));
-	i = 2;
+	input = ft_lstnew(av[3], ft_check_path(av[3], paths));
+	i = 3;
 	while (av[++i] && i < (ac - 1))
 		ft_lstadd_back(&input, ft_lstnew(av[i], ft_check_path(av[i], paths)));
 	return (input);
@@ -43,14 +43,23 @@ void	ft_get_in_out_fd(int ac, char **av)
 {
 	int		fd[2];
 
-	(data())->fd_in = open(av[1], O_RDWR);
-	data()->flag = 0;
-	if (data()->fd_in == -1)
+	if (ft_strncmp(av[1], "here_doc", 9) == 0)
 	{
-		perror(av[1]);
-		pipe(fd);
-		(data())->fd_in = fd[0];
-		close(fd[1]);
+		(data())->fd_in = ft_main_here_doc(av);
+		data()->i = 1;
+	}
+	else
+	{
+		(data())->fd_in = open(av[1], O_RDWR);
+		data()->flag = 0;
+		if (data()->fd_in == -1)
+		{
+			perror(av[1]);
+			pipe(fd);
+			(data())->fd_in = fd[0];
+			close(fd[1]);
+		}
+		data()->i = 1;
 	}
 	(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (data()->fd_out == -1)
@@ -58,7 +67,6 @@ void	ft_get_in_out_fd(int ac, char **av)
 		perror("");
 		exit(0);
 	}
-	data()->i = 1;
 }
 
 int	main(int ac, char **av, char **env)
