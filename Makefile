@@ -1,6 +1,6 @@
 NAME = pipex
 CC = cc
-CFLAGS = -O3 -Wall -Wextra  -g #-fsanitize=address
+CFLAGS = -O3 -Wall -Wextra  #-g #-fsanitize=address
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt

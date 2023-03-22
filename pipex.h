@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 19:18:32 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:58:02 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	ft_free_first_command(char **first_command);
 void	free_and_close_transit(t_list *input);
 
 //Here_doc
-int	ft_main_here_doc(char **av);
+int		ft_main_here_doc(char **av);
 
 #endif
