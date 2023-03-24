@@ -36,11 +36,11 @@ Multiprogramming can lead to increased efficiency and utilization of system reso
 
 A process typically includes several components, including:
 
-1. <u>An executable program</u>: This is the actual program that you want to run. It contains the instructions that the computer needs to execute in order to perform a particular task.
-2. <u>Memory space</u>: Each process has its own memory space, which includes the code, data, and stack segments. The code segment contains the executable code for the program, while the data segment contains global and static variables. The stack segment contains the program's stack, which is used to store local variables and function call frames.
-3. <u>System resources</u>: A process also has access to various system resources, such as file handles, network connections, and other devices.
-4. <u>Process state</u>: Each process has a state that determines what it is currently doing. Some possible states include "running", "sleeping", "blocked", or "terminated".
-5. <u>Process identifier (PID)</u>: A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
+1. <ins>An executable program</ins>: This is the actual program that you want to run. It contains the instructions that the computer needs to execute in order to perform a particular task.
+2. <ins>Memory space</ins>: Each process has its own memory space, which includes the code, data, and stack segments. The code segment contains the executable code for the program, while the data segment contains global and static variables. The stack segment contains the program's stack, which is used to store local variables and function call frames.
+3. <ins>System resources</ins>: A process also has access to various system resources, such as file handles, network connections, and other devices.
+4. <ins>Process state</ins>: Each process has a state that determines what it is currently doing. Some possible states include "running", "sleeping", "blocked", or "terminated".
+5. <ins>Process identifier (PID)</ins>: A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
 
 ![Untitled 1](https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png)
 
@@ -68,7 +68,7 @@ The child process and parent process run independently of each other and have th
 
 ## What is a pipe?
 
-**Definition:** A pipe is a method for interprocess communication (IPC) that allows one process to send data to another process. A pipe consists of two ends, a read end and a write end. The write end is used to send data to the pipe, and the read end is used to receive data from the pipe.
+**Definition:** A pipe is a method for </ins>interprocess communication (IPC)</ins> that allows one process to send data to another process. A pipe consists of two ends, a read end and a write end. The write end is used to send data to the pipe, and the read end is used to receive data from the pipe.
 
 **Simple Definition:** A pipe is like a tube that connects two processes or programs. One end of the pipe is used to send data and the other end is used to receive it.
 
