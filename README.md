@@ -421,3 +421,6 @@ Here are some examples of how to use the **`chmod`** command to change file perm
     
 
 Note that in order to change file permissions, you must have permission to modify the file. If the file is owned by another user or if you don't have permission to modify it, you will need to use **`sudo`** or ask the owner of the file to change the permissions.
+
+### My notion 
+https://polarized-algebra-458.notion.site/Pipex-06c13c870d2e41a0886a0be544d46be9
