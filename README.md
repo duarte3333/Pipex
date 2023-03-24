@@ -223,6 +223,9 @@ int fd2 = dup2(fd1, 10);
 ```
 
 Now you can use both **`fd1`** and **`fd2`** to read from or write to the same file, and you can refer to the new file descriptor as **`10`**.
+#### Difference between dup() and dup2()
+
+The main difference between dup and dup2 is that dup duplicates the file descriptor passed as argument and returns the lowest unused file descriptor, while dup2 duplicates the file descriptor passed as the first argument onto the file descriptor passed as the second argument.
 
 ## What is a pipeline ?
 
