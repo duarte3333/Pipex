@@ -2,6 +2,11 @@
 
 ## What is the goal of the project?
 
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227661140-fc0360ee-b980-40e7-93f4-f5b7e89b54af.png"/></td>
+     </tr>
+</div>
+
 The goal of the pipex project is to create a program that can mimic the behavior of the shell command **`"< file1 cmd1 | cmd2 > file2"`**, where **`cmd1`** reads input from **`file1`**, processes it, and sends the output to **`cmd2`**, which then writes the output to **`file2`**.
 
 The **`pipex`** program takes four arguments: **`file1`**, **`cmd1`**, **`cmd2`**, and **`file2`**. It reads input from **`file1`**, sends it through the pipe to **`cmd2`**, and writes the output to **`file2`**.
