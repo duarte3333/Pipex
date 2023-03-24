@@ -8,6 +8,10 @@ The **`pipex`** program takes four arguments: **`file1`**, **`cmd1`**, **`cmd2`*
 
 The **`pipex`** program must use **`fork()`**, **`dup2()`**, and **`execve()`** to create a child process, redirect its standard input and output to the pipe, and execute the two given commands. It should also handle errors and edge cases, such as invalid arguments, non-existent files, and failed system calls.
 
+### Bonus Part
+I was able to do multiple pipes: < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
+And also the here doc command: cmd << LIMITER | cmd1 >> file
+
 ##### Simpler explanation
 
 The pipex project is a programming exercise that involves manipulating data in a special way called "piping". Piping is a technique that lets you take the output from one program and use it as the input to another program.
