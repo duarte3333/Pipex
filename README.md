@@ -39,7 +39,10 @@ A process typically includes several components, including:
 4. <ins>Process state</ins>: Each process has a state that determines what it is currently doing. Some possible states include "running", "sleeping", "blocked", or "terminated".
 5. <ins>Process identifier (PID)</ins>: A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
 
-![Untitled 1](https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png)
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 Processes are a fundamental concept in modern operating systems and are used to provide a mechanism for running multiple programs or tasks concurrently. They can also be used to implement multiprocessing and multitasking, where multiple processes can run simultaneously on different cores or CPUs, or on the same CPU using time-sharing techniques.
 
