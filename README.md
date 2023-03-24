@@ -2,11 +2,6 @@
 
 ## What is the goal of the project?
 
-<div align="center">
-        <td> <img src="https://user-images.githubusercontent.com/76222459/227661140-fc0360ee-b980-40e7-93f4-f5b7e89b54af.png"/></td>
-     </tr>
-</div>
-
 The goal of the pipex project is to create a program that can mimic the behavior of the shell command **`"< file1 cmd1 | cmd2 > file2"`**, where **`cmd1`** reads input from **`file1`**, processes it, and sends the output to **`cmd2`**, which then writes the output to **`file2`**.
 
 The **`pipex`** program takes four arguments: **`file1`**, **`cmd1`**, **`cmd2`**, and **`file2`**. It reads input from **`file1`**, sends it through the pipe to **`cmd2`**, and writes the output to **`file2`**.
@@ -31,9 +26,6 @@ In brief: database servers, WWW browser and server, SSH client and server, email
 The basic idea behind multiprogramming is that while one program is waiting for I/O (e.g., reading data from a file), the CPU can switch to another program that is ready to run. This way, the CPU is kept busy running programs, even when some programs are waiting for external events to occur. 
 
 Multiprogramming can lead to increased efficiency and utilization of system resources.
-
-
-
 
 ## What is a process ?
 
@@ -72,6 +64,11 @@ When **`fork()`** is called, a new process is created that is a copy of the call
 The child process and parent process run independently of each other and have their own memory space, CPU registers, and file descriptors. The child process can modify its own memory space, but any changes made by the child process do not affect the parent process.
 
 ## What is a pipe?
+
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 **Definition:** A pipe is a method for </ins>interprocess communication (IPC)</ins> that allows one process to send data to another process. A pipe consists of two ends, a read end and a write end. The write end is used to send data to the pipe, and the read end is used to receive data from the pipe.
 
@@ -113,7 +110,7 @@ int main() {
 ## What is the function pipe()?
 
 <div align="center">
-        <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227661140-fc0360ee-b980-40e7-93f4-f5b7e89b54af.png"/></td>
      </tr>
 </div>
 
