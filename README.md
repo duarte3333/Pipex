@@ -1,13 +1,3 @@
----
-header-includes:
-    - \usepackage{multicol}
-    - \newcommand{\hideFromPandoc}[1]{#1}
-    - \hideFromPandoc{
-        \let\Begin\begin
-        \let\End\end
-      }
----
-
 # Pipex
 
 ## What is the goal of the project?
@@ -18,54 +8,41 @@ The **`pipex`** program takes four arguments: **`file1`**, **`cmd1`**, **`cmd2`*
 
 The **`pipex`** program must use **`fork()`**, **`dup2()`**, and **`execve()`** to create a child process, redirect its standard input and output to the pipe, and execute the two given commands. It should also handle errors and edge cases, such as invalid arguments, non-existent files, and failed system calls.
 
-### Simpler explanation
+##### Simpler explanation
 
 The pipex project is a programming exercise that involves manipulating data in a special way called "piping". Piping is a technique that lets you take the output from one program and use it as the input to another program.
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled.png)
-
-### Applications
+##### Applications
 
 The pipex project has practical applications in many fields, such as data science, networking, and security. For example, in data science, pipelining is a common technique used to process and transform data. In networking, pipelining can be used to create efficient communication channels between client and server applications. In security, pipelining can be used to create custom filters that monitor and analyze network traffic.
+In brief: database servers, WWW browser and server, SSH client and server, email client and server, us BitTorrent.
 
 ## What is multiprogramming?
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227653720-09ae8a55-1238-4f9a-844b-41b1f0d8c84c.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 The basic idea behind multiprogramming is that while one program is waiting for I/O (e.g., reading data from a file), the CPU can switch to another program that is ready to run. This way, the CPU is kept busy running programs, even when some programs are waiting for external events to occur. 
 
 Multiprogramming can lead to increased efficiency and utilization of system resources.
 
-<div align="center">
-    <table >
-     <!-- <tr>
-        <td><b>Latest Tweets</b></td>
-        <td><b>daily.dev</b></td>
-     </tr> -->
-     <tr>
-       <td><p>The basic idea behind multiprogramming is that while one program is waiting for I/O (e.g., reading data from a file),the CPU can switch to another program that is ready to run. </p>
-	   <p>This way, the CPU is kept busy running programs, even when some programs are waiting for external events to occur. </p>
-	   <p> Multiprogramming can lead to increased efficiency and utilization of system resources.</p>
-	   </td>
-        <td> <img src="https://user-images.githubusercontent.com/76222459/227653720-09ae8a55-1238-4f9a-844b-41b1f0d8c84c.png" width="1400" alt="sunil sapkota's Dev Card"/></td>
-     </tr>
-    </table>
-    </div>
 
-![Untitled](https://user-images.githubusercontent.com/76222459/227653720-09ae8a55-1238-4f9a-844b-41b1f0d8c84c.png)
 
 
 ## What is a process ?
 
-A process is a running instance of a program. It consists of one or more threads of execution, as well as associated memory, file descriptors, and other system resources. Processes are managed by the operating system and can run concurrently with other processes on the same system. Each process is assigned a unique PID by the operating system, which can be used to identify and manipulate the process.
+<u>A process is a running instance of a program.</u> It consists of one or more threads of execution, as well as associated memory, file descriptors, and other system resources. Processes are managed by the operating system and can run concurrently with other processes on the same system. Each process is assigned a unique PID by the operating system, which can be used to identify and manipulate the process.
 
 A process typically includes several components, including:
 
-1. An executable program: This is the actual program that you want to run. It contains the instructions that the computer needs to execute in order to perform a particular task.
-2. Memory space: Each process has its own memory space, which includes the code, data, and stack segments. The code segment contains the executable code for the program, while the data segment contains global and static variables. The stack segment contains the program's stack, which is used to store local variables and function call frames.
-3. System resources: A process also has access to various system resources, such as file handles, network connections, and other devices.
-4. Process state: Each process has a state that determines what it is currently doing. Some possible states include "running", "sleeping", "blocked", or "terminated".
-5. Process identifier (PID): A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
+1. <u>An executable program</u>: This is the actual program that you want to run. It contains the instructions that the computer needs to execute in order to perform a particular task.
+2. <u>Memory space</u>: Each process has its own memory space, which includes the code, data, and stack segments. The code segment contains the executable code for the program, while the data segment contains global and static variables. The stack segment contains the program's stack, which is used to store local variables and function call frames.
+3. <u>System resources</u>: A process also has access to various system resources, such as file handles, network connections, and other devices.
+4. <u>Process state</u>: Each process has a state that determines what it is currently doing. Some possible states include "running", "sleeping", "blocked", or "terminated".
+5. <u>Process identifier (PID)</u>: A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png)
 
 Processes are a fundamental concept in modern operating systems and are used to provide a mechanism for running multiple programs or tasks concurrently. They can also be used to implement multiprocessing and multitasking, where multiple processes can run simultaneously on different cores or CPUs, or on the same CPU using time-sharing techniques.
 
@@ -74,14 +51,20 @@ Processes are a fundamental concept in modern operating systems and are used to 
 In C programming, the **`fork()`** function is used to create a new process by duplicating the calling process. The new process is referred to as the child process, while the original process is referred to as the parent process.
 
 When **`fork()`** is called, a new process is created that is a copy of the calling process. Both processes then continue executing from the point where the **`fork()`** function was called. The new process gets its own unique process ID (PID), while the parent process retains its original PID.
+<div align="center">
+    <table >
+     <!-- <tr>
+        <td><b>Latest Tweets</b></td>
+        <td><b>daily.dev</b></td>
+     </tr> -->
+     <tr>
+       <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" alt="sunil sapkota twitter" > </img></td>
+        <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+    </table>
+    </div>
 
 The child process and parent process run independently of each other and have their own memory space, CPU registers, and file descriptors. The child process can modify its own memory space, but any changes made by the child process do not affect the parent process.
-
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%202.png)
-
-[data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e](data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e)
-
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%203.png)
 
 ## What is a pipe?
 
@@ -124,9 +107,19 @@ int main() {
 
 ## What is the function pipe()?
 
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
+
 In C, the **`pipe()`** function is used to create an interprocess communication channel (IPC) between a parent process and a child process. The channel is typically used to send data from the parent process to the child process or vice versa.
 
 The **`pipe()`** function creates a pair of file descriptors, one for the read end of the pipe and one for the write end of the pipe. The file descriptors are returned in an array, where the first element is the read end of the pipe and the second element is the write end of the pipe. The parent process can then use the write end of the pipe to send data to the child process, and the child process can use the read end of the pipe to receive the data.
+
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227657438-e939c1eb-95ba-4a6c-80b6-a5775a2a85e3.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 ## What the function exit()?
 
@@ -182,6 +175,11 @@ The **`execve()`** function is a system call in C that is used to execute a prog
 
 ## What is the command dup and dup2() ?
 
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227659378-66ba60fc-af85-49d1-b5ea-2e1e7a23fc79.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
+
 In C, **`dup`** and **`dup2`** are system calls that are used to duplicate a file descriptor. These system calls are defined in the **`<unistd.h>`** header file.
 
 The syntax for **`dup`** in C is:
@@ -191,7 +189,7 @@ The syntax for **`dup`** in C is:
 int dup(int oldfd);
 ```
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%206.png)
+
 
 The **`dup`** function takes an integer argument **`oldfd`**, which is the file descriptor that you want to duplicate. It returns a new file descriptor that is a copy of **`oldfd`**, or -1 if an error occurs.
 
@@ -228,6 +226,11 @@ Now you can use both **`fd1`** and **`fd2`** to read from or write to the same f
 
 ## What is a pipeline ?
 
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227659390-c2c35956-627b-41d2-818b-5d0405d31105.png" width="250" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
+
 In computing, a pipeline refers to a series of processes or commands arranged in a sequence where the output of one process is the input of the next process. It allows for the efficient processing of large amounts of data by breaking down complex tasks into smaller, more manageable parts.
 
 Pipelines are often used in Unix/Linux systems, where they are implemented using the pipe character **`|`**. For example, the following command:
@@ -238,7 +241,11 @@ ls | grep .txt | sort
 
 will list all files in the current directory, filter out only the ones with a **`.txt`** extension, and sort them alphabetically. The output of the **`ls`** command is piped to the **`grep`** command, which in turn pipes its output to the **`sort`** command. This allows the entire pipeline to be executed as a single command, with each step processing the output of the previous step.
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%207.png)
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227659360-8e0ab5c1-c295-4a6e-8950-daedc1f9252b.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
+
 
 ## What is a thread?
 
@@ -248,7 +255,10 @@ So, imagine you're cooking dinner and you have several tasks to do, such as chop
 
 Threads are often used to improve the performance and responsiveness of programs, as they can allow multiple tasks to be executed concurrently. For example, a web server might use threads to handle multiple requests from different clients at the same time.
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%208.png)
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227659830-34878f7f-b639-434c-b8fc-91ffa3810a43.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 Threads can also be used to implement parallelism in a program, where multiple threads work together to complete a task more quickly. Parallelism is often used in scientific computing, video rendering, and other computationally intensive tasks.
 
@@ -351,10 +361,13 @@ int main() {
     return 0;
 }
 ```
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227659857-10bd1d96-0f02-4ba9-a0cc-af2dc0b20c53.png" width="450" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
 
 For two-way communication, you need to use two file descriptors to establish two pipes - one for communication from the parent process to the child process, and another for communication from the child process to the parent process.
 
-![Untitled](Pipex%2006c13c870d2e41a0886a0be544d46be9/Untitled%209.png)
 
 ## What is a here doc in linux ?
 
