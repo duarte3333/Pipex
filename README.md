@@ -40,7 +40,7 @@ A process typically includes several components, including:
 5. <ins>Process identifier (PID)</ins>: A PID is a unique identifier assigned to each process by the operating system. PIDs are used to manage and monitor processes on the system.
 
 <div align="center">
-        <td> <img src="https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png" width="500" alt="sunil sapkota's Dev Card"/></td>
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227656494-38157229-396f-4f19-8fc2-2cdd6cc564cf.png" width="600"</td>
      </tr>
 </div>
 
@@ -59,7 +59,7 @@ When **`fork()`** is called, a new process is created that is a copy of the call
      </tr> -->
      <tr>
        <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" alt="sunil sapkota twitter" > </img></td>
-        <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+        <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="300" alt="sunil sapkota's Dev Card"/></td>
      </tr>
     </table>
     </div>
