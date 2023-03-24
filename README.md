@@ -58,7 +58,7 @@ When **`fork()`** is called, a new process is created that is a copy of the call
         <td><b>daily.dev</b></td>
      </tr> -->
      <tr>
-       <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" alt="sunil sapkota twitter" > </img></td>
+       <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" width="300" alt="sunil sapkota twitter" > </img></td>
         <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="300" alt="sunil sapkota's Dev Card"/></td>
      </tr>
     </table>
