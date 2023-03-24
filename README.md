@@ -9,8 +9,9 @@ The **`pipex`** program takes four arguments: **`file1`**, **`cmd1`**, **`cmd2`*
 The **`pipex`** program must use **`fork()`**, **`dup2()`**, and **`execve()`** to create a child process, redirect its standard input and output to the pipe, and execute the two given commands. It should also handle errors and edge cases, such as invalid arguments, non-existent files, and failed system calls.
 
 ##### Bonus Part
-<p>I was able to do multiple pipes: < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</p>
-<p>And also the here doc command: cmd << LIMITER | cmd1 >> file</p>
+On the bonus part of the project I was able to replicate the following command: < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2. This means that I was able to create a pipeline of multiple commands where I could specify input and output redirection using the syntax mentioned above.
+
+Moreover, I was also able to replicate the cmd << LIMITER | cmd1 >> file command. This command allows the user to input a block of text directly into a command or script and then pipe the output to another command, which can also be redirected to a file.
 
 ##### Simpler explanation
 
