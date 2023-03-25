@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/18 19:47:09 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/25 11:50:48 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_get_in_out_fd(int ac, char **av)
 {
 	int		fd[2];
 
-	(data())->fd_in = open(av[1], O_RDWR);
+	(data())->fd_in = open(av[1], O_RDONLY);
 	data()->flag = 0;
 	if (data()->fd_in == -1)
 	{

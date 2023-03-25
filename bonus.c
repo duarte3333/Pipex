@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:41 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/22 11:34:17 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/03/25 11:32:43 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ t_list	*ft_set_input(char **av, int ac, char **paths)
 	int		i;
 	t_list	*input;
 
-	input = ft_lstnew(av[3], ft_check_path(av[3], paths));
-	i = 3;
+	if (ft_strncmp(av[1], "here_doc", 9) == 0)
+		i = 3;
+	else
+		i = 2;
+	input = ft_lstnew(av[i], ft_check_path(av[i], paths));
 	while (av[++i] && i < (ac - 1))
 		ft_lstadd_back(&input, ft_lstnew(av[i], ft_check_path(av[i], paths)));
 	return (input);
@@ -37,7 +40,7 @@ void	free_and_close_transit(t_list *input)
 	close(data()->fd_in);
 	close(data()->fd_out);
 	if (data()->flag == 6)
-		unlink("temp");
+		unlink(".temp");
 	ft_free_all(data()->first, data()->paths);
 }
 
@@ -46,10 +49,7 @@ void	ft_get_in_out_fd(int ac, char **av)
 	int		fd[2];
 
 	if (ft_strncmp(av[1], "here_doc", 9) == 0)
-	{
-		(data())->fd_in = ft_main_here_doc(av);
-		data()->flag = 6;
-	}
+		ft_fd_here_doc(ac, av);
 	else
 	{
 		(data())->fd_in = open(av[1], O_RDWR);
@@ -60,12 +60,12 @@ void	ft_get_in_out_fd(int ac, char **av)
 			(data())->fd_in = fd[0];
 			close(fd[1]);
 		}
-	}
-	(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	if (data()->fd_out == -1)
-	{
-		perror("");
-		exit(0);
+		(data())->fd_out = open(av[ac - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (data()->fd_out == -1)
+		{
+			perror("");
+			exit(0);
+		}
 	}
 	data()->i = 1;
 }
