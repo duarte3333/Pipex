@@ -52,10 +52,9 @@ A process typically includes several components, including:
 Processes are a fundamental concept in modern operating systems and are used to provide a mechanism for running multiple programs or tasks concurrently. They can also be used to implement multiprocessing and multitasking, where multiple processes can run simultaneously on different cores or CPUs, or on the same CPU using time-sharing techniques.
 #### Example of use of processes
 
-<p>In the Chromium browser, creating a new tab causes a fork call;</p>
-<p>The child process is used to load and execute scripts from the sites opened in that tab;</p>
+<p>In the Chromium browser, creating a new tab causes a fork call.The child process is used to load and execute scripts from the sites opened in that tab.
 <p>Allows tabs to not obtain information about the other tabs (isolation). </p>
-<p>**IMPORTANT:** It is always a bad idea to assume that an operation in C is indivisible!</p>
+<p><b>IMPORTANT:</b> It is always a bad idea to assume that an operation in C is indivisible!</p>
 
 ## What is the function fork() ?
 
