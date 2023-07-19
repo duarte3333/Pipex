@@ -53,7 +53,7 @@ Processes are a fundamental concept in modern operating systems and are used to 
 #### Example of use of processes
 
 <p>In the Chromium browser, creating a new tab causes a fork call.The child process is used to load and execute scripts from the sites opened in that tab. Allows tabs to not obtain information about the other tabs (isolation).
-<p><b>IMPORTANT:</b> It is always a bad idea to assume that an operation in C is indivisible!</p>
+<p><b>IMPORTANT:</b> It is always a bad idea to assume that an operation in C is indivisible!!</p>
 
 ## What is the function fork() ?
 
